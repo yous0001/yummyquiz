@@ -37,6 +37,7 @@ $(window).ready(function () {
 });
 
 //get data from api
+$(".l1").click(gosearch)
 $(".l2").click(getcat)
 $(".l3").click(function(){
   getlist('a')
@@ -119,11 +120,21 @@ async function getsearch(searchword) {
   console.log(searchresult);
   displaymeals()
 }
+async function getsearchbyletter(searchletter) {
+
+  let data = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchletter}`);
+  let dataobj = await data.json();
+  searchresult =dataobj.meals;
+  console.log(searchresult);
+  displaymeals()
+}
+
 function selectmeal(selectedmeal){
   console.log("done")
   getsearch(`${selectedmeal}`)
 
 }
+
 
 function displaymeals()
 {
@@ -172,9 +183,46 @@ function contactus(){
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-outline-danger w-auto m-auto">Submit</button>`
+                <button type="submit" class="btn btn-outline-danger w-auto m-auto" disabled="true">Submit</button>`
 document.getElementById("row").innerHTML=cartona;
 }
+function gosearch(){
+ let cartona=`<div class="col-md-6">
+ <div class="item">
+     <input type="text" onkeyup="searchbyname()" id="search-name" placeholder="search by name" class="search-form form-control bg-transparent text-light">
+ </div>
+ </div>
+ <div class="col-md-6">
+ <div class="item">
+     <input type="text" id="search-letter" placeholder="search by first letter" onkeyup="searchbyletter()" class="search-form form-control bg-transparent text-light ">
+ </div>
+ </div>`
+                document.getElementById("search-row").innerHTML=cartona;    
+}
 getsearch('');
+
+function searchbyname(){
+  let searchinput=document.getElementById("search-name").value
+   getsearch(searchinput)
+}
+function searchbyletter(){
+  let searchinput=document.getElementById("search-letter").value;
+   getsearchbyletter(searchinput.charAt(0))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

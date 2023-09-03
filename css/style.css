@@ -67,4 +67,7 @@ body{
     top:0;
 }
 
+.search-form::placeholder{
+    color: gray;
+}
 
