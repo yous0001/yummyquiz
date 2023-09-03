@@ -139,7 +139,7 @@ function selectmeal(selectedmeal){
 function displaymeals()
 {
   let cartona=``;
-  for(let i=0;i<searchresult.length;i++){
+  for(let i=0;i<searchresult.length&&i<20;i++){
     cartona+=`<div class="catigoryitem rounded-2 col-md-3 p-2 position-relative">
                   <div class="item" onclick="getsearch('${searchresult[i].strMeal}')">
                       <img src="${searchresult[i].strMealThumb}" class="w-100">
@@ -154,32 +154,32 @@ function displaymeals()
 function contactus(){
   let cartona=`<div class="catigoryitem rounded-2 col-md-6 p-2 position-relative">
                   <div class="item">
-                      <input type="text" class="form-control" placeholder="Enter Your Name">
+                      <input type="text" class="form-control rounded-2" id="name" placeholder="Enter Your Name" onkeyup="isnamevalid()">
                   </div>
                 </div>
                 <div class="catigoryitem rounded-2 col-md-6 p-2 position-relative">
                   <div class="item">
-                      <input type="email" class="form-control" placeholder="Enter Your Email">
+                      <input type="email" class="form-control" id="email" placeholder="Enter Your Email" onkeyup="isemailvalid()">
                   </div>
                 </div>
                 <div class="catigoryitem rounded-2 col-md-6 p-2 position-relative">
                   <div class="item">
-                      <input type="number" class="form-control" placeholder="Enter Your phone">
+                      <input type="number" class="form-control" placeholder="Enter Your phone" onkeyup="isphonevalid()">
                   </div>
                 </div>
                 <div class="catigoryitem rounded-2 col-md-6 p-2 position-relative">
                   <div class="item">
-                      <input type="number" class="form-control" placeholder="Enter Your age">
+                      <input type="number" class="form-control" placeholder="Enter Your age" onkeyup="isagevalid()">
                   </div>
                 </div>
                 <div class="catigoryitem rounded-2 col-md-6 p-2 position-relative">
                   <div class="item">
-                      <input type="password" class="form-control" placeholder="Enter Your password">
+                      <input type="password" class="form-control" placeholder="Enter Your password" onkeyup="ispasswordvalid()">
                   </div>
                 </div>
                 <div class="catigoryitem rounded-2 col-md-6 p-2 position-relative">
                   <div class="item">
-                      <input type="password" class="form-control" placeholder="Repassword">
+                      <input type="password" class="form-control" placeholder="Repassword" onkeyup="isrepasswordvalid()">
                   </div>
                 </div>
 
@@ -211,14 +211,36 @@ function searchbyletter(){
 }
 
 
-
-
-
-
-
-
-
-
+function isnamevalid(){
+  iname=document.getElementById("name")
+  var username_regex=/[a-zA-Z]{3,}$/;
+  var thename =iname.value;
+  if(username_regex.test(thename)){
+    iname.style.border="5px solid green"
+    
+    return true;
+  }
+  else{
+    iname.style.border="5px solid red"
+    return false;
+  }
+  
+ }
+function isemailvalid(){
+  iemail=document.getElementById("email")
+  var usermail_regex=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  var themail =iemail.value;
+  if(usermail_regex.test(themail)){
+    iemail.style.border="5px solid green"
+    
+    return true;
+  }
+  else{
+    iemail.style.border="5px solid red"
+    return false;
+  }
+  
+ }
 
 
 
